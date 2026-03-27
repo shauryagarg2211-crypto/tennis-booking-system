@@ -1,14 +1,28 @@
 <h1>Tennis Court Booking</h1>
 
 <form method="POST" action="/book">
-    <label>Date:</label>
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Date:</label><br>
     <input type="date" name="date" required><br><br>
 
-    <label>Start Time:</label>
+    <label>Start Time:</label><br>
     <input type="time" name="start" required><br><br>
 
-    <label>End Time:</label>
+    <label>End Time:</label><br>
     <input type="time" name="end" required><br><br>
 
-    <button type="submit">Book</button>
+    <button type="submit">Book Court</button>
 </form>
+
+<hr>
+<h2>Bookings:</h2>
+<ul>
+    {% for booking in bookings %}
+        <li>
+            <b>{{ booking.name }}</b> — {{ booking.date }}: {{ booking.start }} - {{ booking.end }}
+            <a href="/delete/{{ booking.id }}">❌ Delete</a>
+        </li>
+    {% endfor %}
+</ul>
